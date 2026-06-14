@@ -29,7 +29,14 @@ const FEATURES = [
 ] as const;
 
 const CURRENCIES = ["USD", "EUR", "GEL"] as const;
-const LANGUAGES = ["English", "Georgian", "Turkish", "Russian", "German"] as const;
+const LANGUAGES = [
+  "English",
+  "Georgian",
+  "Turkish",
+  "Russian",
+  "German",
+  "Arabic",
+] as const;
 const TONES = ["Professional", "Friendly", "Luxury"] as const;
 
 type PropertyType = (typeof PROPERTY_TYPES)[number];
@@ -43,9 +50,11 @@ type GenerateResult = {
 function ResultCard({
   title,
   content,
+  rtl = false,
 }: {
   title: string;
   content: string;
+  rtl?: boolean;
 }) {
   const [copied, setCopied] = useState(false);
 
@@ -67,7 +76,10 @@ function ResultCard({
           {copied ? "Copied!" : "Copy"}
         </button>
       </div>
-      <p className="whitespace-pre-wrap text-sm leading-relaxed text-slate-600">
+      <p
+        dir={rtl ? "rtl" : undefined}
+        className={`whitespace-pre-wrap text-sm leading-relaxed text-slate-600${rtl ? " text-right" : ""}`}
+      >
         {content}
       </p>
     </div>
@@ -354,8 +366,16 @@ export default function Home() {
         {result && (
           <div className="mt-10 space-y-6">
             <ResultCard title="Property Description" content={result.description} />
-            <ResultCard title="Translation" content={result.translation} />
-            <ResultCard title="Social Media Post" content={result.social_post} />
+            <ResultCard
+              title="Translation"
+              content={result.translation}
+              rtl={targetLanguage === "Arabic"}
+            />
+            <ResultCard
+              title="Social Media Post"
+              content={result.social_post}
+              rtl={targetLanguage === "Arabic"}
+            />
           </div>
         )}
       </div>

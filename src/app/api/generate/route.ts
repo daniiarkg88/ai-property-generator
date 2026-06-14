@@ -28,7 +28,14 @@ const FEATURES = [
 ] as const;
 
 const CURRENCIES = ["USD", "EUR", "GEL"] as const;
-const LANGUAGES = ["English", "Georgian", "Turkish", "Russian", "German"] as const;
+const LANGUAGES = [
+  "English",
+  "Georgian",
+  "Turkish",
+  "Russian",
+  "German",
+  "Arabic",
+] as const;
 const TONES = ["Professional", "Friendly", "Luxury"] as const;
 
 type FormPayload = {
