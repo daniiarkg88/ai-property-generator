@@ -35,6 +35,7 @@ const LANGUAGES = [
   "Turkish",
   "Russian",
   "Kyrgyz",
+  "Kazakh",
   "German",
   "Spanish",
   "French",
