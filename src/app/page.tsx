@@ -65,20 +65,20 @@ function ResultCard({
   }
 
   return (
-    <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+    <div className="rounded-xl border border-slate-200 bg-white p-6 text-gray-900 shadow-sm">
       <div className="mb-4 flex items-center justify-between gap-4">
-        <h3 className="text-lg font-semibold text-slate-900">{title}</h3>
+        <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
         <button
           type="button"
           onClick={handleCopy}
-          className="rounded-lg border border-slate-200 px-3 py-1.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
+          className="rounded-lg border border-slate-200 px-3 py-1.5 text-sm font-medium text-gray-800 transition hover:bg-slate-50"
         >
           {copied ? "Copied!" : "Copy"}
         </button>
       </div>
       <p
         dir={rtl ? "rtl" : undefined}
-        className={`whitespace-pre-wrap text-sm leading-relaxed text-slate-600${rtl ? " text-right" : ""}`}
+        className={`whitespace-pre-wrap text-sm leading-relaxed text-gray-800${rtl ? " text-right" : ""}`}
       >
         {content}
       </p>
