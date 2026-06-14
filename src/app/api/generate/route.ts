@@ -34,6 +34,7 @@ const LANGUAGES = [
   "Turkish",
   "Russian",
   "German",
+  "Spanish",
   "Arabic",
 ] as const;
 const TONES = ["Professional", "Friendly", "Luxury"] as const;
