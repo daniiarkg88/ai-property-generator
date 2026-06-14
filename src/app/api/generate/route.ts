@@ -35,6 +35,7 @@ const LANGUAGES = [
   "Russian",
   "German",
   "Spanish",
+  "French",
   "Portuguese",
   "Arabic",
 ] as const;
