@@ -27,6 +27,19 @@ const FEATURES = [
   "Garage",
 ] as const;
 
+const INFRASTRUCTURE = [
+  "🚇 Metro",
+  "🎓 University",
+  "🏫 School",
+  "👶 Kindergarten",
+  "🚌 Bus Station",
+  "🏥 Hospital",
+  "🛒 Shopping Center / Mall",
+  "🌳 Park",
+  "🏖️ Beach",
+  "✈️ Airport",
+] as const;
+
 const CURRENCIES = ["USD", "EUR", "GEL"] as const;
 const LANGUAGES = [
   "English",
@@ -53,6 +66,7 @@ type FormPayload = {
   totalFloors?: number;
   condition: (typeof CONDITIONS)[number];
   features: string[];
+  infrastructure?: string[];
   price: number;
   currency: (typeof CURRENCIES)[number];
   targetLanguage: (typeof LANGUAGES)[number];
@@ -87,6 +101,11 @@ function buildPrompt(data: FormPayload): string {
     lines.push(`Features: ${data.features.join(", ")}`);
   }
 
+  const infrastructure = data.infrastructure ?? [];
+  if (infrastructure.length > 0) {
+    lines.push(`Nearby infrastructure: ${infrastructure.join(", ")}`);
+  }
+
   return lines.join("\n");
 }
 
@@ -106,6 +125,7 @@ export async function POST(request: Request) {
     });
 
     const propertyDetails = buildPrompt(body);
+    const infrastructure = body.infrastructure ?? [];
 
     const message = await anthropic.messages.create({
       model: "claude-sonnet-4-6",
@@ -128,7 +148,11 @@ Respond with ONLY valid JSON (no markdown fences) in this exact shape:
 
 Important: The "translation" field must be a full translation of "description" written entirely in ${body.targetLanguage}. Do not repeat the English text. The "social_post_en" field must be written entirely in English. The "social_post_translation" field must be a full translation of "social_post_en" written entirely in ${body.targetLanguage}.
 
-Use a ${body.tone.toLowerCase()} tone throughout.`,
+Use a ${body.tone.toLowerCase()} tone throughout.${
+            infrastructure.length > 0
+              ? ` Highlight the nearby infrastructure (${infrastructure.join(", ")}) in the description — mention how these amenities benefit the location and daily life.`
+              : ""
+          }`,
         },
       ],
     });

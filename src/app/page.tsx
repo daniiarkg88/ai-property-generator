@@ -28,6 +28,19 @@ const FEATURES = [
   "Garage",
 ] as const;
 
+const INFRASTRUCTURE = [
+  "🚇 Metro",
+  "🎓 University",
+  "🏫 School",
+  "👶 Kindergarten",
+  "🚌 Bus Station",
+  "🏥 Hospital",
+  "🛒 Shopping Center / Mall",
+  "🌳 Park",
+  "🏖️ Beach",
+  "✈️ Airport",
+] as const;
+
 const CURRENCIES = ["USD", "EUR", "GEL"] as const;
 const LANGUAGES = [
   "English",
@@ -101,6 +114,7 @@ export default function Home() {
   const [totalFloors, setTotalFloors] = useState("");
   const [condition, setCondition] = useState<string>(CONDITIONS[0]);
   const [features, setFeatures] = useState<string[]>([]);
+  const [infrastructure, setInfrastructure] = useState<string[]>([]);
   const [price, setPrice] = useState("");
   const [currency, setCurrency] = useState<string>(CURRENCIES[0]);
   const [targetLanguage, setTargetLanguage] = useState<string>(LANGUAGES[0]);
@@ -118,6 +132,14 @@ export default function Home() {
       prev.includes(feature)
         ? prev.filter((f) => f !== feature)
         : [...prev, feature],
+    );
+  }
+
+  function toggleInfrastructure(item: string) {
+    setInfrastructure((prev) =>
+      prev.includes(item)
+        ? prev.filter((i) => i !== item)
+        : [...prev, item],
     );
   }
 
@@ -141,6 +163,7 @@ export default function Home() {
             : {}),
           condition,
           features,
+          infrastructure,
           price: Number(price),
           currency,
           targetLanguage,
@@ -351,6 +374,26 @@ export default function Home() {
                     className="rounded border-slate-300"
                   />
                   {feature}
+                </label>
+              ))}
+            </div>
+          </fieldset>
+
+          <fieldset className="mt-6">
+            <legend className={labelClass}>Nearby Infrastructure</legend>
+            <div className="mt-2 grid grid-cols-2 gap-3 sm:grid-cols-3">
+              {INFRASTRUCTURE.map((item) => (
+                <label
+                  key={item}
+                  className="flex cursor-pointer items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-700 transition hover:bg-slate-50"
+                >
+                  <input
+                    type="checkbox"
+                    checked={infrastructure.includes(item)}
+                    onChange={() => toggleInfrastructure(item)}
+                    className="rounded border-slate-300"
+                  />
+                  {item}
                 </label>
               ))}
             </div>
