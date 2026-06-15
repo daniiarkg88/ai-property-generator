@@ -38,6 +38,8 @@ const INFRASTRUCTURE = [
   "🛒 Shopping Center / Mall",
   "🌳 Park",
   "🏖️ Beach",
+  "🏞️ Close to River",
+  "🏞️ Close to Lake",
   "✈️ Airport",
 ] as const;
 
