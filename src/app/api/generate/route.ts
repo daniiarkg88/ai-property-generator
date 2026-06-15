@@ -38,6 +38,7 @@ const LANGUAGES = [
   "German",
   "Spanish",
   "French",
+  "Italian",
   "Portuguese",
   "Arabic",
 ] as const;
