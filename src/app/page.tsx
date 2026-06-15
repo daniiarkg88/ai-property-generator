@@ -47,6 +47,7 @@ const CURRENCIES = [
   "USD",
   "EUR",
   "GEL",
+  "AED",
   "SAR",
   "QAR",
   "KWD",
