@@ -43,7 +43,17 @@ const INFRASTRUCTURE = [
   "✈️ Airport",
 ] as const;
 
-const CURRENCIES = ["USD", "EUR", "GEL"] as const;
+const CURRENCIES = [
+  "USD",
+  "EUR",
+  "GEL",
+  "SAR",
+  "QAR",
+  "KWD",
+  "BHD",
+  "OMR",
+  "CAD",
+] as const;
 const LANGUAGES = [
   "English",
   "Georgian",
