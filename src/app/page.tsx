@@ -54,6 +54,7 @@ const CURRENCIES = [
   "BHD",
   "OMR",
   "CAD",
+  "JPY",
 ] as const;
 const LANGUAGES = [
   "English",
@@ -68,6 +69,7 @@ const LANGUAGES = [
   "Italian",
   "Portuguese",
   "Arabic",
+  "Japanese",
 ] as const;
 const TONES = ["Professional", "Friendly", "Luxury"] as const;
 
